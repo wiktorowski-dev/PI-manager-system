@@ -1,6 +1,7 @@
 import subprocess
 import psutil
 import os
+import time
 
 
 class Manager(object):
@@ -33,6 +34,7 @@ class Manager(object):
 
     def __manage_continuously_work(self, data):
         while True:
+            time.sleep(5)
             process_down = False
             actual_working_processes = psutil.pids()
             for i in range(len(data)):
