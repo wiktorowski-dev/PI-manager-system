@@ -15,3 +15,10 @@ class Manager(object):
         data = file.split('\n')
         data = [{'unique_name': x, 'path': y} for x, y in (z.split(',') for z in data)]
         return data
+
+    @staticmethod
+    def __run_process(d):
+        path = d['path']
+        process = subprocess.Popen(['python', path])
+        d['process_id'] = process.pid
+        return d
