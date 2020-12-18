@@ -27,7 +27,7 @@ class Manager(object):
     def __run_process(d):
         path = d['path']
         # Unix python declaration
-        process = subprocess.Popen(['python3', path])
+        process = subprocess.Popen(['sudo python3', path])
         d['process_id'] = process.pid
         return d
 
