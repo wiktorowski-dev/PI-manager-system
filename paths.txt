@@ -1,1 +1,1 @@
-python-offer-manager,/home/pi/projects/offer-manager-system/main.py
+python-offer-manager,home/pi/start_sys/PI-manager-system/test.sh
