@@ -6,6 +6,12 @@ import os
 class Manager(object):
     def __init__(self):
         super(Manager, self).__init__()
+        data = self.__initialize_processes()
+
+    def __initialize_processes(self):
+        data = self.__load_processes()
+        data = [self.__run_process(x) for x in data]
+        return data
 
     @staticmethod
     def __load_processes():
