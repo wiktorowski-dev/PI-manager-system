@@ -1,0 +1,1 @@
+python-offer-manager,/home/pi/projects/offer-manager-system/main.py
