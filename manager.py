@@ -78,3 +78,7 @@ class Manager(object):
         else:
             another_id = [x[0] for x in stacked_data if elem['path'] in x[-1]][0]
             return another_id
+
+
+if __name__ == '__main__':
+    Manager()
