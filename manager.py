@@ -7,6 +7,7 @@ class Manager(object):
     def __init__(self):
         super(Manager, self).__init__()
         data = self.__initialize_processes()
+        self.__manage_continuously_work(data)
 
     def __initialize_processes(self):
         data = self.__load_processes()
@@ -28,6 +29,32 @@ class Manager(object):
         process = subprocess.Popen(['python', path])
         d['process_id'] = process.pid
         return d
+
+    def __manage_continuously_work(self, data):
+        while True:
+            process_down = False
+            actual_working_processes = psutil.pids()
+            for i in range(len(data)):
+                if data[i]['process_id'] in actual_working_processes:
+                    try:
+                        process_path = psutil.Process(data[i]['process_id']).cmdline()[-1]
+                        if data[i]['path'] == process_path:
+                            continue
+                        else:
+                            process_down = True
+
+                    except:
+                        process_down = True
+
+                else:
+                    process_down = True
+
+                if process_down:
+                    mpr = self.__is_missed_process_running(data[i])
+                    if mpr:
+                        data[i]['process_id'] = mpr
+                    else:
+                        data[i] = self.__run_process(data[i])
 
     @staticmethod
     def __is_missed_process_running(elem):
