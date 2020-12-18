@@ -26,7 +26,8 @@ class Manager(object):
     @staticmethod
     def __run_process(d):
         path = d['path']
-        process = subprocess.Popen(['python', path])
+        # Unix python declaration
+        process = subprocess.Popen(['python3', path])
         d['process_id'] = process.pid
         return d
 
