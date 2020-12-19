@@ -21,14 +21,15 @@ class Manager(object):
             file = file.read()
 
         data = file.split('\n')
-        data = [{'unique_name': x, 'path': y} for x, y in (z.split(',') for z in data)]
+        data = [{'unique_name': x, 'path': c, 'script_start': y} for x, y, c in (z.split(',') for z in data)]
         return data
-
+# python-offer-manager,home/pi/projects/offer-manager-system/main.py
     @staticmethod
     def __run_process(d):
         path = d['path']
+        script_start = d['script_start']
         # Unix python declaration
-        process = subprocess.Popen(['python3', path], shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        process = subprocess.Popen([script_start, path], shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         d['process_id'] = process.pid
         return d
 

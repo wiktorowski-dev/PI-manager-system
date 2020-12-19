@@ -1,1 +1,1 @@
-python-offer-manager,home/pi/start_sys/PI-manager-system/test.sh
+python-offer-manager,sudo python3,C:\Users\Kamil\Desktop\test.py
