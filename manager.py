@@ -23,15 +23,20 @@ class Manager(object):
         data = file.split('\n')
         data = [{'unique_name': x, 'path': c, 'script_start': y} for x, y, c in (z.split(',') for z in data)]
         return data
-# python-offer-manager,home/pi/projects/offer-manager-system/main.py
-    @staticmethod
-    def __run_process(d):
+
+    def __run_process(self, d):
         path = d['path']
+        self.__move_to_the_folder(path)
         script_start = d['script_start']
         # Unix python declaration
         process = subprocess.Popen([script_start, path], shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         d['process_id'] = process.pid
         return d
+
+    @staticmethod
+    def __move_to_the_folder(path):
+        path_to_move = os.path.split(path)[0]
+        os.chdir(path_to_move)
 
     def __manage_continuously_work(self, data):
         while True:
