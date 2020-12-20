@@ -1,1 +1,2 @@
 python-offer-manager,python3,/home/pi/projects/offer-manager-system/main.py
+CI-CD-Git,python3,/home/pi/projects/CI-CD-git/main.py
