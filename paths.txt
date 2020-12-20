@@ -1,1 +1,1 @@
-python-offer-manager,sudo python3,C:\Users\Kamil\Desktop\test.py
+python-offer-manager,python3,/home/pi/projects/offer-manager-system/main.py
