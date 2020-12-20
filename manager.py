@@ -26,9 +26,11 @@ class Manager(object):
 
     def __run_process(self, d):
         path = d['path']
-        path = self.__move_to_the_folder(path)
+        p_out = self.__move_to_the_folder(path)
         script_start = d['script_start']
         # Unix python declaration
+        #print(path2)
+        #print(os.getcwd())
         process = subprocess.Popen([script_start, path])
         d['process_id'] = process.pid
         return d
@@ -48,6 +50,7 @@ class Manager(object):
                 if data[i]['process_id'] in actual_working_processes:
                     try:
                         process_path = psutil.Process(data[i]['process_id']).cmdline()[-1]
+                        #print(process_path)
                         if data[i]['path'] == process_path:
                             continue
                         else:
