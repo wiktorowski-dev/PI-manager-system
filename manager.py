@@ -26,17 +26,18 @@ class Manager(object):
 
     def __run_process(self, d):
         path = d['path']
-        self.__move_to_the_folder(path)
+        path = self.__move_to_the_folder(path)
         script_start = d['script_start']
         # Unix python declaration
-        process = subprocess.Popen([script_start, path], shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        process = subprocess.Popen([script_start, path])
         d['process_id'] = process.pid
         return d
 
     @staticmethod
     def __move_to_the_folder(path):
-        path_to_move = os.path.split(path)[0]
-        os.chdir(path_to_move)
+        path_to_move = os.path.split(path)
+        os.chdir(path_to_move[0])
+        return path_to_move[-1]
 
     def __manage_continuously_work(self, data):
         while True:
