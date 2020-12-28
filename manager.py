@@ -21,17 +21,30 @@ class Manager(object):
             file = file.read()
 
         data = file.split('\n')
-        data = [{'unique_name': x, 'path': c, 'script_start': y} for x, y, c in (z.split(',') for z in data)]
-        return data
+        split_data = [z.split(',') for z in data]
+        data_out = []
+        for elem in split_data:
+            if len(elem) == 3:
+                data = [{'unique_name': x, 'path': c, 'script_start': y} for x, y, c in [elem]][0]
+            elif len(elem) == 4:
+                data = [{'unique_name': x, 'path': c, 'script_start': y, 'script_argument': q} for x, y, c, q in [elem]][0]
+            else:
+                print('Valid input size')
+                return None
+            data_out.append(data)
+
+        return data_out
 
     def __run_process(self, d):
         path = d['path']
         p_out = self.__move_to_the_folder(path)
         script_start = d['script_start']
         # Unix python declaration
-        #print(path2)
-        #print(os.getcwd())
-        process = subprocess.Popen([script_start, path])
+        run_process = [script_start, path]
+        if len(d.keys()) == 4:
+            run_process.append(d['script_argument'])
+
+        process = subprocess.Popen(run_process)
         d['process_id'] = process.pid
         return d
 
