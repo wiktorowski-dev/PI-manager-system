@@ -1,1 +1,2 @@
 CI-CD-Git,python3,/home/pi/projects/CI-CD-git/main.py
+python-offer-manager,python3,/home/pi/projects/offer-manager-system/main.py,/home/pi/projects/offer-manager-system/configurations/configuration.json
