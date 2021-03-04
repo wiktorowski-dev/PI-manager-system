@@ -100,7 +100,9 @@ class Logs(object):
 
     def __remove_older_logs(self, logs_path):
         days = self.__configuration['log_life_time']
-        path_to_logs = os.path.split(logs_path)[0]
+        p = os.path.split(logs_path)
+        p = [x for x in p if x]
+        path_to_logs = p[0]
         for file in os.listdir(path_to_logs):
             if 'log_' in file:
                 date = file.replace('log_', '')
