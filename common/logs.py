@@ -32,7 +32,7 @@ class Logs(object):
             slash = '\\'
 
         if not sub_folder_name:
-            sub_folder_name = '/home/pi/start_sys/PI-manager-system/logs'
+            sub_folder_name = 'home/pi/start_sys/PI-manager-system/logs'
         else:
             sub_folder_name = f'{sub_folder_name}{slash}'
 
