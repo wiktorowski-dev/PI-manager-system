@@ -46,7 +46,7 @@ class Manager(Logs):
         script_start = d['script_start']
         # Unix python declaration
         run_process = [script_start, path]
-        self.log_it(f'Running a process: path: {path}')
+        self.log_it('Running a process: path: {}'.format(str(path)))
         if len(d.keys()) == 4:
             run_process.append(d['script_argument'])
 
