@@ -32,12 +32,13 @@ class Logs(object):
             slash = '\\'
 
         if not sub_folder_name:
-            sub_folder_name = ''
+            sub_folder_name = '/home/pi/start_sys/PI-manager-system/logs'
         else:
             sub_folder_name = f'{sub_folder_name}{slash}'
 
-        logs_path = f'{current_path}{slash}{self.__configuration["folder_name"]}{slash}{sub_folder_name}{logs_name}'
-        self.__create_path_to_file(logs_path)
+        # logs_path = f'{current_path}{slash}{self.__configuration["folder_name"]}{slash}{sub_folder_name}{logs_name}'
+        # self.__create_path_to_file(logs_path)
+        logs_path = r''
         return logs_path
 
     def __log_it(self, msg, t_msg, path):
