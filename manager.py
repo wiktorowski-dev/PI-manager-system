@@ -2,24 +2,29 @@ import subprocess
 import psutil
 import os
 import time
+from common.logs import *
 
 
-class Manager(object):
+class Manager(Logs):
     def __init__(self):
         super(Manager, self).__init__()
         data = self.__initialize_processes()
-        self.__manage_continuously_work(data)
+        try:
+            self.__manage_continuously_work(data)
+        except Exception as e:
+            self.log_it(str(e), 'e')
+            raise Exception(str(e))
 
     def __initialize_processes(self):
+        self.log_it('Initializing a script')
         data = self.__load_processes()
         data = [self.__run_process(x) for x in data]
         return data
 
-    @staticmethod
-    def __load_processes():
+    def __load_processes(self,):
         with open('paths.txt') as file:
             file = file.read()
-
+        self.log_it('Splitting elements from file')
         data = file.split('\n')
         split_data = [z.split(',') for z in data]
         data_out = []
@@ -41,10 +46,12 @@ class Manager(object):
         script_start = d['script_start']
         # Unix python declaration
         run_process = [script_start, path]
+        self.log_it(f'Running a process: path: {path}')
         if len(d.keys()) == 4:
             run_process.append(d['script_argument'])
 
         process = subprocess.Popen(run_process)
+        self.log_it('Process started')
         d['process_id'] = process.pid
         return d
 
@@ -55,6 +62,7 @@ class Manager(object):
         return path_to_move[-1]
 
     def __manage_continuously_work(self, data):
+        self.log_it('Continuous script support starting')
         while True:
             time.sleep(5)
             process_down = False
