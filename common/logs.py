@@ -143,6 +143,7 @@ class Logs(object):
 
         path_dir, file_name = os.path.split(path)
         path_dir = path_dir.split(slash)
+        path_dir = [x for x in path_dir if x]
         work_path = path_dir.pop(0)
 
         if not os.path.isdir(work_path):
