@@ -38,7 +38,7 @@ class Logs(object):
 
         # logs_path = f'{current_path}{slash}{self.__configuration["folder_name"]}{slash}{sub_folder_name}{logs_name}'
         # self.__create_path_to_file(logs_path)
-        logs_path = r'home/pi/start_sys/PI-manager-system/logs'
+        logs_path = r'/home/pi/start_sys/PI-manager-system/logs'
         return logs_path
 
     def __log_it(self, msg, t_msg, path):
